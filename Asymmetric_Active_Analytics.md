@@ -1,0 +1,279 @@
+Asymmetric  [Ellipsoid]  active particle:
+
+​     An asymmetric active particle undergoes self-propulsion with a velocity $v_p \bold {\hat n} (t)$ along its longer axis in 2-dimension. The angle between the x-axis of the lab frame and long axis of the ellipsoid at time $t$ is represented by $\theta(t)$. The component of the orientation vector $\bold{\hat n}(t)$ w.r.t the lab frame can be expressed as $\bold {\hat n}(t)\equiv \Big(\cos \theta(t),\sin \theta(t)\Big)$. The coupled Langevin equation in the presence of an external force $F$ and torque $\tau$  are 
+$$
+\partial_t r_i = \Gamma_{ij} (\theta (t)) \  F_j + v_p \hat n_i (t) + \xi _i(t),
+\\ where \ \Gamma_{ij}(\theta (t)) = \bar\Gamma \delta_{ij} + \frac{\Delta \Gamma}{2} M_{ij} (\theta(t))
+\\ \partial_t \theta = \Gamma_{\theta} \tau + \xi_{\theta}(t)
+$$
+
+$$
+\bar \Gamma = \frac{\Gamma_{\parallel} +\Gamma_{\perp}}{2}, \Delta \Gamma = \Gamma_{\parallel} -\Gamma_{\perp} \  and \ M_{ij} (\theta(t)) = \left[
+\matrix{
+  \cos 2\theta(t) & sin 2\theta(t)\\
+  sin 2\theta(t) & -\cos 2\theta(t)\\
+  
+}
+\right]
+$$
+
+   $\xi_i(t)$ and $\xi_{\theta}$ are the Gaussian random noise with zero mean and 
+
+$\langle \xi_{\theta}(t) \xi_{\theta}(t\prime) \rangle = 2 K_B T \ \Gamma_{\theta} \ \delta(t-t\prime)= 2 D_r \ \delta(t-t\prime)$
+
+for a fixed angle $\theta (t)$,   
+
+$\langle \xi_i(t) \xi_j(t\prime) \rangle = 2 K_B T \ \Gamma_{ij}(\theta (t)) \ \delta(t-t\prime)$
+
+1. **Calculation of $\langle \hat n_i (t_1) \hat n_j (t_2) \rangle _{\theta_0}$, the average is taken for fixed initial angle**$\theta_0$
+
+$\theta(t_1)\equiv \theta_1,\theta(t_2)\equiv \theta_2$
+$$
+\langle \hat n_i (t_1) \hat n_j (t_2) \rangle_{\theta_0} =\left[
+\matrix{
+  \langle \cos \theta_1 \cos \theta_2 \rangle & \langle \cos \theta_1 \sin \theta_2\rangle\\
+  \langle \sin \theta_1 \cos \theta_2 \rangle & \langle \sin \theta_1 \sin \theta_2\rangle\\
+  
+}
+\right]
+$$
+$2 \langle \cos \theta_1 \cos \theta_2 \rangle = e^{-D_r(t_1+t_2-2 \min(t_1,t_2))} + \cos 2\theta_0 e^{-D_r(t_1+t_2+2 \min(t_1,t_2))}$
+
+$2 \langle \sin \theta_1 \sin \theta_2 \rangle = e^{-D_r(t_1+t_2-2 \min(t_1,t_2))} - \cos 2\theta_0 e^{-D_r(t_1+t_2+2 \min(t_1,t_2))}$
+
+$2 \langle \cos \theta_1 \sin \theta_2 \rangle = \sin 2\theta_0 e^{-D_r(t_1+t_2+2 \min(t_1,t_2))} $
+
+$2 \langle \cos \theta_2 \sin \theta_1 \rangle = \sin 2\theta_0 e^{-D_r(t_1+t_2+2 \min(t_1,t_2))} $
+
+Substituting, we have
+$$
+\langle \hat n_i (t_1) \hat n_j (t_2) \rangle_{\theta_0} = \frac{\delta_{ij}}{2}e^{-D_r(t_1+t_2-2 \min(t_1,t_2))}+\frac{M_{ij}(\theta_0)}{2}e^{-D_r(t_1+t_2+2 \min(t_1,t_2))}
+$$
+
+
+
+#### **Without Trap**
+
+2. **Langevin equation**:
+
+$$
+ \frac{\partial r_i }{\partial t}=  v_p \hat n_i (t) + \xi _i(t)
+ \\\implies r_i(t) -r_i(0) =\int_0^tv_p \hat n_i(t\prime) dt\prime +\int_0^t \xi_i(t\prime)dt\prime
+\\ \implies \Delta r_i(t)= \int_0^tv_p \hat n_i(t\prime) dt\prime +\int_0^t \xi_i(t\prime)dt\prime
+$$
+Mean Square Displacement (MSD) :-
+$$
+\langle \Delta x^2(t) \rangle_{\theta_0} =v_p^2\int_0^t dt_1^\prime\int_0^t dt_2^\prime \  \langle \hat n_i(t_1^\prime) \hat n_i(t_2^\prime) \rangle_{\theta_0}+\int_0^tdt_1^\prime\int_0^t dt_2^\prime \  \langle\xi_i(t_1\prime)\xi_i(t_2\prime)\rangle_{\theta_0}
+\\ \langle \Delta x^2(t) \rangle_{\theta_0}=v_p^2\int_0^t dt_1\prime\int_0^t dt_2\prime \ [ \frac{1}{2}e^{-D_r(t_1\prime+t_2\prime-2 \min(t_1\prime,t_2\prime))}+\frac{M_{xx}(\theta_0)}{2}e^{-D_r(t_1\prime+t_2\prime+2 \min(t_1\prime,t_2\prime))}] + 
+\\ 2 K_B T \ \int_0^tdt_1\prime\int_0^t dt_2\prime \  \langle\Gamma_{xx}(\theta (t_1\prime))\rangle_{\theta_0} \ \delta(t_1\prime-t_2\prime)
+\\ \text{Considering } t_1\prime > t_2\prime,
+\\ \langle \Delta x^2(t) \rangle_{\theta_0}=2v_p^2\int_0^t dt_2\prime\int_{t_2\prime}^t dt_1\prime \ \ [ \frac{1}{2}e^{-D_r(t_1\prime-t_2\prime)}] +2v_p^2\int_0^t dt_2\prime\int_{t_2\prime}^t dt_1\prime \ \frac{M_{xx}(\theta_0)}{2}e^{-D_r(t_1\prime+3t_2\prime )}
+\\+ 2 K_B T \ \int_0^tdt_1\prime\int_0^t dt_2\prime \ [\bar\Gamma  + \frac{\Delta \Gamma}{2} \langle \cos 2 \theta(t_1\prime))\rangle_{\theta_0} ]\ \delta(t_1\prime-t_2\prime)
+\\ \langle \Delta x^2(t) \rangle_{\theta_0}=2v_p^2\int_0^t dt_2\prime\int_{t_2\prime}^t dt_1\prime \ \ [ \frac{1}{2}e^{-D_r(t_1\prime-t_2\prime)}] +2v_p^2\int_0^t dt_2\prime\int_{t_2\prime}^t dt_1\prime \ \frac{M_{xx}(\theta_0)}{2}e^{-D_r(t_1\prime+3t_2\prime )}
+\\+ 2 K_B T \ \int_0^tdt_1\prime\int_0^t dt_2\prime \ \bar\Gamma \ \delta(t_1\prime-t_2\prime)+ 2 K_B T \frac{\Delta \Gamma}{2}  \ \int_0^tdt_1\prime\int_0^t dt_2\prime \ \cos 2 \theta_0 e^{-4D_r t_1\prime}  \ \delta(t_1\prime-t_2\prime)
+\\ \text{Take }\tau_r = \frac {1}{2D_r},\tau_1(t)=\frac{1-e^{-D_rt}}{D_r},\tau_4(t)=\frac{1-e^{-4D_rt}}{4D_r}
+\\ \langle \Delta x^2(t) \rangle_{\theta_0}=2\tau_r v_p^2[ t-\tau_1(t)]+\frac{2\tau_rv_p^2}{3} \cos 2\theta_0 [\tau_1(t)-\tau_4(t)]+2 K_B T \ \bar\Gamma t+ K_B T \Delta \Gamma  \ \cos 2 \theta_0 \tau_4(t)
+$$
+
+Similarly,
+$$
+\langle \Delta y^2(t) \rangle_{\theta_0}=2\tau_r v_p^2[ t-\tau_1(t)]-\frac{2\tau_rv_p^2}{3} \cos 2\theta_0 [\tau_1(t)-\tau_4(t)]+2 K_B T \ \bar\Gamma t- K_B T \Delta \Gamma  \ \cos 2 \theta_0 \tau_4(t
+$$
+Generalising, we have
+$$
+\langle \Delta x_i(t)\Delta x_j(t) \rangle _{\theta_0}=\{ 2\bar D t+2\tau_r v_p^2[ t-\tau_1(t)]\}\delta_{ij} +\bigg[\frac{2\tau_rv_p^2}{3}  [\tau_1(t)-\tau_4(t)]+ \Delta D \  \tau_4(t) \bigg]M_{ij}(\theta_0)
+$$
+Therefore,
+$$
+\langle \Delta r^2(t) \rangle_{\theta_0}=\langle \Delta x^2(t) \rangle_{\theta_0}+\langle \Delta y^2(t) \rangle_{\theta_0}
+\\ \langle \Delta r^2(t) \rangle_{\theta_0}=4(K_B T \ \bar\Gamma+ \tau_r v_p^2)t - 4\tau_r v_p^2 \tau_1(t)
+\\ \text{Take } \bar D=  K_B T \ \bar\Gamma,
+\\ \text{The MSD for the untrapped active asymmetric particle is given as}
+\\ \langle \Delta r^2(t) \rangle_{\theta_0}=4\bar D t+4\tau_r v_p^2(t-2\tau_r(1-e^{-\frac{t}{2\tau_r}}))
+$$
+
+
+
+The time dependent displacement diffusion tensor for a fixed initial angle $\theta_0$ are
+$$
+\\D_{ij}(t,\theta_0)=\frac{\langle \Delta x_i(t)\Delta x_j(t) \rangle _{\theta_0}}{2t}
+\\ \text{Asymmetric Brownian particle}
+\\D_{ij}(t,\theta_0)=\bar D \delta_{ij}+ \frac{\Delta D}{2}\frac{\tau_4(t)}{t}M_{ij}(\theta_0)
+\\\text{Asymmetric Active particle without harmonic trap}
+\\D_{ij}(t,\theta_0)=[\bar D + \tau_r v_p^2-\frac{\tau_r v_p^2}{t}\tau_1(t)]\delta_{ij} +\bigg[\frac{2\tau_rv_p^2}{3}  [\tau_1(t)-\tau_4(t)]+ \Delta D \  \tau_4(t) \bigg]\frac{M_{ij}(\theta_0)}{2t}
+$$
+If we average $D_{ij}$ over all the initial angles $\theta_0$,
+$$
+\\ \text{Asymmetric Brownian particle}
+\\D_{ij}(t)=\frac{1}{2\pi}\int_0^{2\pi}d\theta_0 D_{ij} (t,\theta_0) =\bar D \delta_{ij}
+\\\text{Asymmetric Active particle without harmonic trap}
+\\D_{ij}(t)=\frac{1}{2\pi}\int_0^{2\pi}d\theta_0 D_{ij} (t,\theta_0)=[\bar D + \tau_r v_p^2-\frac{\tau_r v_p^2}{t}\tau_1(t)]\delta_{ij}
+$$
+ For $t \gg \tau_r$, $D_{ij}(t)\sim[\bar D + \tau_r v_p^2]\delta_{ij}$, which means that the asymmetry is lost at long times and the system behave like a passive brownian particle but with an enhanced diffusion.
+
+For $t \ll\tau_r$, $D_{ij}(t)\sim[\bar D + \frac{ v_p^2}{4}]\delta_{ij}$, $\langle \Delta r^2(t) \rangle_{\theta_0}=4\bar D t+v_p^2t^2$, which shows ballistic behaviour at short times.
+
+3. **The correlation $\langle \Delta x(t_1)\Delta x(t_2) \rangle_{\theta_0}$**
+
+$$
+\langle \Delta x(t_1)\Delta x(t_2) \rangle_{\theta_0} =v_p^2\int_0^{t_1} dt_1\prime\int_0^{t_2} dt_2\prime \  \langle \hat n_x(t_1\prime) \hat n_x(t_2\prime) \rangle_{\theta_0}+\int_0^{t_1}dt_1\prime\int_0^{t_2} dt_2\prime \  \langle\xi_x(t_1\prime)\xi_x(t_2\prime)\rangle_{\theta_0}
+\\\langle \Delta x(t_1)\Delta x(t_2) \rangle_{\theta_0} =v_p^2\int_0^{t_1} dt_1\prime\int_0^{t_2} dt_2\prime \ [ \frac{1}{2}e^{-D_r(t_1\prime+t_2\prime-2 \min(t_1\prime,t_2\prime))}+\frac{M_{xx}(\theta_0)}{2}e^{-D_r(t_1\prime+t_2\prime+2 \min(t_1\prime,t_2\prime))}] \\+ 2K_BT\int_0^{t_1}dt_1\prime\int_0^{t_2} dt_2\prime \  \langle\Gamma_{xx}(\theta (t_1\prime))\rangle_{\theta_0} \ \delta(t_1\prime-t_2\prime)
+\\\langle \Delta x(t_1)\Delta x(t_2) \rangle_{\theta_0} =v_p^2\int_0^{t_2} dt_2\prime\int_{t_2\prime}^{t_2} dt_1\prime \  \frac{1}{2}e^{-D_r(t_1\prime-t_2\prime)}+v_p^2\int_0^{t_2} dt_2\prime\int_{t_2\prime}^{t_1} dt_1\prime \  \frac{1}{2}e^{-D_r(t_1\prime-t_2\prime)}\\+v_p^2\frac{M_{xx}(\theta_0)}{2}\int_0^{t_2} dt_2\prime\int_{t_2\prime}^{t_2} dt_1\prime \ e^{-D_r(t_1\prime+3t_2\prime)}+v_p^2\frac{M_{xx}(\theta_0)}{2}\int_0^{t_2} dt_2\prime\int_{t_2\prime}^{t_1} dt_1\prime \ e^{-D_r(t_1\prime+3t_2\prime)}\\+2K_BT\int_0^{t_1}dt_1\prime\int_0^{t_2} dt_2\prime \ [\bar\Gamma  + \frac{\Delta \Gamma}{2} \langle \cos 2 \theta(t_1\prime))\rangle_{\theta_0} ]  \delta(t_1\prime-t_2\prime)
+\\\langle \Delta x(t_1)\Delta x(t_2) \rangle_{\theta_0} =v_p^2\tau_r \Bigg[ 2t_2- \tau_1(t_2) -2 \tau_r\Big( e^{\frac{-(t_1-t_2)}{2\tau_r}}-e^{\frac{-t_1}{2\tau_r}} \Big) \Bigg] \\+ \cos 2\theta_0 \tau_r v_p^2\Bigg[\frac{2 \tau_4(t_2)}{3}-\frac{ \tau_1(t_2)}{3}-e^{\frac{-t_1}{2\tau_r}}\tau_3(t_2)\Bigg]
+\\+2 K_B T \ \bar\Gamma t_2+ K_B T \Delta \Gamma  \ \cos 2 \theta_0 \tau_4(t_2)
+$$
+
+The two time correlation for a fixed initial angle $\theta_0$,
+$$
+\text{Asymmetric brownian particle}
+\\\text{Taking }t_1>t_2
+\\ \langle \Delta x(t_1)\Delta x(t_2)\rangle_{\theta_0} =2\bar D t_2[1+\frac{\Delta \Gamma}{2 \bar \Gamma}\cos 2\theta_0 \ \tau_4(t_2)]
+\\ \text{Asymmetric Active brownian particle}
+\\ \langle \Delta x(t_1)\Delta x(t_2)\rangle_{\theta_0} =2\bar D t_2[1+\frac{\Delta \Gamma}{2 \bar \Gamma}\cos 2\theta_0 \ \tau_4(t_2)]+v_p^2\tau_r \Bigg[ 2t_2- \tau_1(t_2) -2 \tau_r\Big( e^{\frac{-(t_1-t_2)}{2\tau_r}}-e^{\frac{-t_1}{2\tau_r}} \Big) \Bigg] \\+ \cos 2\theta_0 \tau_r v_p^2\Bigg[\frac{2 \tau_4(t_2)}{3}-\frac{ \tau_1(t_2)}{3}-e^{\frac{-t_1}{2\tau_r}}\tau_3(t_2)\Bigg]
+$$
+Average over all the initial angles $\theta_0$, we have
+$$
+\text{Asymmetric brownian particle}\\ \langle \Delta x(t_1)\Delta x(t_2)\rangle=2\bar D \min(t_1,t_2)
+\\ \text{Asymmetric Active brownian particle},
+\\ \langle \Delta x(t_1)\Delta x(t_2)\rangle =2(\bar D+v_p^2\tau_r)\min(t_1,t_2)- v_p^2\tau_r\tau_1(\min(t_1,t_2)) -2 v_p^2 \tau_r^2\Big( e^{\frac{-|t_1-t_2|}{2\tau_r}}-e^{\frac{-t_1}{2\tau_r}} \Big)
+$$
+
+#### **In the presence of harmonic trap**
+
+Potential confinement, $U(x,y)= \kappa(x^2+y^2)/2$
+
+Langevin Equation in the presence of harmonic trap,
+$$
+\frac{\partial x}{\partial t} =-\kappa x[\bar\Gamma  + \frac{\Delta \Gamma}{2}  \cos 2 \theta(t)]-\frac{\kappa y}{2}\Delta \Gamma  \sin 2 \theta(t)+ v_p \hat n_x (t) + \xi _x(t)
+\\ \frac{\partial y}{\partial t} =-\frac{\kappa x}{2}\Delta \Gamma  \sin 2 \theta(t)-\kappa y[\bar\Gamma  - \frac{\Delta \Gamma}{2}  \cos 2 \theta(t)]+ v_p \hat n_y (t) + \xi _y(t)
+$$
+**Perturbative Expansion**: 
+
+Define $R\equiv (x,y)^T$, the above equation can be reduce as 
+$$
+\dot R(t)= -\kappa\Big[\bar\Gamma \mathbb{I}  + \frac{\Delta \Gamma}{2} \mathbb{M}(t)\Big]R(t)+v_p \bold {\hat n}(t)+ \xi(t)
+\\ \text {where} \ \mathbb{M}(t) = \left[
+\matrix{
+  \cos 2\theta(t) & sin 2\theta(t)\\
+  sin 2\theta(t) & -\cos 2\theta(t)\\
+  
+}
+\right]
+$$
+Perturbative expansion is 
+$$
+R(t) =R_0(t)-\bigg(\frac{\kappa \Delta \Gamma}{2}\bigg)R_1(t)+\bigg(\frac{\kappa \Delta \Gamma}{2}\bigg)^2R_2(t)+ \mathcal{O}\bigg(\frac{\kappa \Delta \Gamma}{2}\bigg)^3
+$$
+Substituting equation 12 in 11, we obtain
+$$
+\dot R_0(t)=-\kappa \bar \Gamma R_0(t) + \xi(t)+ v_p \bold{\hat n}(t)
+\\ \dot R_1(t)=-\kappa \bar \Gamma R_1(t)+ \mathbb{M}(t)R_0(t)
+\\ \dot R_2(t)=-\kappa \bar \Gamma R_2(t)+ \mathbb{M}(t)R_1(t)
+$$
+Taking R(0)=0, solving the above equations
+$$
+R_0(t)= \int_0^t e^{-\kappa \bar\Gamma(t-t^\prime)}\xi(t^\prime)dt^\prime+ v_p\int_0^t e^{-\kappa \bar\Gamma(t-t^\prime)}\bold{\hat n}(t^\prime)dt^\prime
+\\R_1(t)= \int_0^t e^{-\kappa \bar\Gamma(t-t^\prime)} \mathbb{M}(t^\prime)R_0(t^\prime)dt^\prime
+\\\\R_2(t)= \int_0^t e^{-\kappa \bar\Gamma(t-t^\prime)} \mathbb{M}(t^\prime)R_1(t^\prime)dt^\prime
+$$
+The equal time correlation matrix 
+$$
+\langle R_i(t)R_j(t)\rangle_{\xi,\theta_0} =\langle R_{0,i}(t)R_{0,j}(t)\rangle_{\xi,\theta_0} - \bigg(\frac{\kappa \Delta \Gamma}{2}\bigg)\langle R_{0,i}(t)R_{1,j}(t)\rangle_{\xi,\theta_0}+\bigg(\frac{\kappa \Delta \Gamma}{2}\bigg)^2 \bigg[\langle R_{1,i}(t)R_{1,j}(t)\rangle_{\xi,\theta_0}\\+  2\langle R_{0,i}(t)R_{2,j}(t)\rangle_{\xi,\theta_0}\bigg] +\mathcal{O}\bigg(\frac{\kappa \Delta \Gamma}{2}\bigg)^3
+$$
+
+4. **Calculation of $\langle R_{0}(t)R_{0}(t)\rangle_{\xi,\theta_0} $**
+
+$$
+\langle R_{0}(t)R_{0}(t)\rangle_{\xi,\theta_0}=\int_0^t dt^\prime\int_0^t dt^{\prime \prime}e^{-\kappa \bar\Gamma(t-t^\prime)}e^{-\kappa \bar\Gamma(t-t^{\prime\prime})}\langle \xi(t^\prime)\xi(t^{\prime \prime})\rangle_{\xi,\theta_0}\\+v_p^2\int_0^t dt^\prime\int_0^t dt^{\prime \prime}e^{-\kappa \bar\Gamma(t-t^\prime)}e^{-\kappa \bar\Gamma(t-t^{\prime\prime})}\langle \bold{\hat n}(t^\prime)\bold{\hat n}(t^{\prime \prime})\rangle_{\xi,\theta_0}
+\\\langle R_{0}(t)R_{0}(t)\rangle_{\xi,\theta_0}=2K_BT e^{-2\kappa \bar\Gamma t}\int_0^t dt^\prime\int_0^t dt^{\prime \prime}e^{\kappa \bar\Gamma(t^\prime+t^{\prime\prime})}\langle \bar\Gamma \mathbb{I}  + \frac{\Delta \Gamma}{2} \mathbb{M}(\theta(t^\prime))\rangle_{\xi,\theta_0}\delta(t^\prime-t^{\prime\prime})
+\\+v_p^2e^{-2\kappa \bar\Gamma t}\int_0^t dt^\prime\int_0^t dt^{\prime \prime}e^{\kappa \bar\Gamma(t^\prime+t^{\prime\prime})}\bigg[\frac{\mathbb{I}}{2}e^{-D_r(t^\prime+t^{\prime\prime}-2 \min(t^\prime,t^{\prime\prime}))}+\frac{\mathbb{M}(\theta_0)}{2}e^{-D_r(t^\prime+t^{\prime\prime}+2 \min(t^\prime,t^{\prime\prime}))}\bigg]
+\\ \text{Considering the case of } t^\prime > t^{\prime\prime},
+\\ \langle R_{0}(t)R_{0}(t)\rangle_{\xi,\theta_0} =\frac{K_B T}{\kappa}\mathbb{I}\bigg(1- e^{-2\kappa\bar \Gamma t}\bigg) + K_B T \Delta \Gamma \mathbb{M}(\theta_0) \bigg(  \frac{e^{-4 D_r t}- e^{-2\kappa \bar\Gamma t}}{2\kappa \bar\Gamma-4D_r}\bigg) \\+ \frac{v_p^2e^{-2\kappa \bar\Gamma t}}{2}\mathbb{I}\times 2\int_0^t dt^{\prime \prime}\int_{t^{\prime \prime}}^t dt^{\prime } \ e^{\kappa \bar\Gamma(t^\prime+t^{\prime\prime})}e^{-D_r(t^\prime-t^{\prime\prime})}\\+\frac{v_p^2e^{-2\kappa \bar\Gamma t}}{2}\mathbb{M}(\theta_0)\times 2\int_0^t dt^{\prime \prime}\int_{t^{\prime \prime}}^t dt^{\prime } \ e^{\kappa \bar\Gamma(t^\prime+t^{\prime\prime})}e^{-D_r(t^\prime+3t^{\prime\prime})}
+\\ \langle R_{0}(t)R_{0}(t)\rangle_{\xi,\theta_0} =\frac{K_B T}{\kappa}\mathbb{I}\bigg(1- e^{-2\kappa\bar \Gamma t}\bigg) + K_B T \Delta \Gamma \mathbb{M}(\theta_0) \bigg(  \frac{e^{-4 D_r t}- e^{-2\kappa \bar\Gamma t}}{2\kappa \bar\Gamma-4D_r}\bigg) \\+ v_p^2 \mathbb{I} \bigg[ \frac{1-e^{-(D_r+\kappa \bar \Gamma)t}}{(\kappa \bar \Gamma)^2 -D_r^2}-\frac{1-e^{-2\kappa \bar \Gamma t}}{2\kappa \bar \Gamma(\kappa \bar \Gamma-D_r)}\bigg]+\frac{v_p^2\mathbb{M}(\theta_0)}{(\kappa \bar \Gamma-D_r)}\bigg[ \frac{e^{-4D_rt}-e^{-(D_r+\kappa \bar \Gamma)t}}{(\kappa \bar \Gamma -3D_r)}-\frac{e^{-4D_rt}-e^{-2\kappa \bar \Gamma t}}{2(\kappa \bar \Gamma-2D_r)}\bigg]
+$$
+
+
+
+**The $x$ and $y$ components are** 
+$$
+\langle x_{0}^2(t)\rangle_{\xi,\theta_0} =\frac{K_B T}{\kappa}\bigg(1- e^{-2\kappa\bar \Gamma t}\bigg) + K_B T \Delta \Gamma \cos 2\theta_0 \bigg(  \frac{e^{-4 D_r t}- e^{-2\kappa \bar\Gamma t}}{2\kappa \bar\Gamma-4D_r}\bigg) \\+ v_p^2  \bigg[ \frac{1-e^{-(D_r+\kappa \bar \Gamma)t}}{(\kappa \bar \Gamma)^2 -D_r^2}-\frac{1-e^{-2\kappa \bar \Gamma t}}{2\kappa \bar \Gamma(\kappa \bar \Gamma-D_r)}\bigg]+\frac{v_p^2\cos 2\theta_0}{(\kappa \bar \Gamma-D_r)}\bigg[ \frac{e^{-4D_rt}-e^{-(D_r+\kappa \bar \Gamma)t}}{(\kappa \bar \Gamma -3D_r)}-\frac{e^{-4D_rt}-e^{-2\kappa \bar \Gamma t}}{2(\kappa \bar \Gamma-2D_r)}\bigg]
+\\ \text{and}
+\\\langle y_{0}^2(t)\rangle_{\xi,\theta_0} =\frac{K_B T}{\kappa}\bigg(1- e^{-2\kappa\bar \Gamma t}\bigg) - K_B T \Delta \Gamma \cos 2\theta_0 \bigg(  \frac{e^{-4 D_r t}- e^{-2\kappa \bar\Gamma t}}{2\kappa \bar\Gamma-4D_r}\bigg) \\+ v_p^2  \bigg[ \frac{1-e^{-(D_r+\kappa \bar \Gamma)t}}{(\kappa \bar \Gamma)^2 -D_r^2}-\frac{1-e^{-2\kappa \bar \Gamma t}}{2\kappa \bar \Gamma(\kappa \bar \Gamma-D_r)}\bigg]-\frac{v_p^2\cos 2\theta_0}{(\kappa \bar \Gamma-D_r)}\bigg[ \frac{e^{-4D_rt}-e^{-(D_r+\kappa \bar \Gamma)t}}{(\kappa \bar \Gamma -3D_r)}-\frac{e^{-4D_rt}-e^{-2\kappa \bar \Gamma t}}{2(\kappa \bar \Gamma-2D_r)}\bigg]
+$$
+**The cross correlation function** 
+$$
+\langle x_{0}(t)y_{0}(t)\rangle_{\xi,\theta_0} =\Delta D \sin 2\theta_0 \bigg(  \frac{e^{-4 D_r t}- e^{-2\kappa \bar\Gamma t}}{2\kappa \bar\Gamma-4D_r}\bigg)+\\\frac{v_p^2\sin 2\theta_0}{(\kappa \bar \Gamma-D_r)}\bigg[ \frac{e^{-4D_rt}-e^{-(D_r+\kappa \bar \Gamma)t}}{(\kappa \bar \Gamma -3D_r)}-\frac{e^{-4D_rt}-e^{-2\kappa \bar \Gamma t}}{2(\kappa \bar \Gamma-2D_r)}\bigg]
+$$
+where $\Delta D= K_B T \Delta \Gamma$
+
+5. **Calculation of $\langle R_{0,i}(t)R_{1,j}(t)\rangle_{\xi,\theta_0} $**
+
+$$
+\langle R_{0,i}(t)R_{1,j}(t)\rangle_{\xi,\theta_0}= \Bigg\langle R_{0,i}(t)\int_0^t e^{-\kappa \bar\Gamma(t-t^\prime)} \sum_k M_{jk}(t^\prime)R_0(t^\prime)dt^\prime\Bigg\rangle_{\xi,\theta_0}
+\\ \langle R_{0,i}(t)R_{1,j}(t)\rangle_{\xi,\theta_0}= \Bigg\langle\int_0^t dt^\prime e^{-\kappa \bar\Gamma(t-t^\prime)} \sum_k M_{jk}(t^\prime)\langle R_{0,i}(t)R_{0,j}(t^\prime)\rangle_{\xi}\Bigg\rangle_{\theta_0}
+$$
+
+$$
+\langle R_{0,i}(t)R_{0,j}(t^\prime)\rangle_{\xi} = \frac{K_BT}{\kappa}\delta_{ij}\bigg[e^{-\kappa \bar\Gamma|t-t^\prime|}-e^{-\kappa \bar\Gamma(t+t^\prime)} \bigg]\\+ K_BT \Delta \Gamma e^{-\kappa \bar\Gamma(t+t^\prime)}\int_0^{\min(t,t\prime)}dt_1^\prime e^{-\kappa \bar\Gamma t_1^\prime} M_{ij}(t_1^\prime)+ v_p^2 e^{-\kappa \bar\Gamma(t+t^\prime)} \int_0^tdt_1^\prime\int_0^{t^\prime} dt_2^\prime e^{\kappa \bar\Gamma(t_1^\prime+t_2^\prime)}\langle \hat n_i (t_1^\prime) \hat n_j (t_2^\prime) \rangle_{\xi}
+$$
+
+Substitute the value of  $\langle R_{0,i}(t)R_{0,j}(t^\prime)\rangle_{\xi}$ in equation 19, 
+$$
+\langle R_{0,i}(t)R_{1,j}(t)\rangle_{\xi,\theta_0}=\frac{K_BT}{\kappa} M_{ji}(\theta_0)e^{-2\kappa \bar\Gamma t}\int_0^tdt^\prime\bigg[e^{(2\kappa \bar\Gamma-4D_r)t^\prime}-e^{-4D_rt^\prime} \bigg]\\+K_BT \Delta \Gamma e^{-2\kappa \bar\Gamma t}\int_0^tdt^\prime\int_0^{t^\prime} dt_1^\prime \bigg \langle \sum_k M_{jk}(t^\prime)M_{ik}(t_1^\prime)\bigg \rangle_{\theta_0}\\+ v_p^2e^{-2\kappa \bar\Gamma t}\int_0^tdt^\prime\int_0^{t} dt_1^\prime\int_0^{t^\prime} dt_2^\prime e^{\kappa \bar\Gamma (t_1^\prime+t_2^\prime)}\bigg \langle \sum_k M_{jk}(t^\prime)\hat n_i (t_1^\prime) \hat n_k (t_2^\prime) \bigg \rangle_{\theta_0}
+$$
+For the MSD along $x$ and $y$ directions, i=j,
+$$
+\bigg \langle \sum_k M_{ik}(t^\prime)M_{ik}(t_1^\prime)\bigg \rangle_{\theta_0} =e^{-4D_r(t^\prime-t_1^\prime)}
+\\\bigg \langle \sum_k M_{ik}(t^\prime)\hat n_i (t_1^\prime) \hat n_k (t_2^\prime) \bigg \rangle_{\theta_0}=e^{-D_r(4t^\prime-3t_1^\prime-t_2^\prime)}
+$$
+where we use the case of  $t^\prime > t_1^\prime >t_2^\prime$ to solve the above equation.
+
+**The third term of equation 21:**
+$$
+v_p^2e^{-2\kappa \bar\Gamma t}\int_0^tdt^\prime\int_0^{t} dt_1^\prime\int_0^{t^\prime} dt_2^\prime e^{\kappa \bar\Gamma (t_1^\prime+t_2^\prime)}e^{-D_r(4t^\prime-3t_1^\prime-t_2^\prime)}=v_p^2e^{-2\kappa \bar\Gamma t}\int_0^tdt^\prime
+e^{-4D_rt^\prime}\int_0^{t} dt_1^\prime\int_0^{t^\prime} dt_2^\prime e^{(\kappa \bar\Gamma+3D_r)t_1^\prime}e^{(\kappa \bar\Gamma+D_r)t_2^\prime}
+\\=v_p^2e^{-2\kappa \bar\Gamma t}\int_0^tdt^\prime
+e^{-4D_rt^\prime}\Bigg[\int_0^{t^\prime} dt_2^\prime e^{(\kappa \bar\Gamma+D_r)t_2^\prime}\int_{t_2^\prime}^{t}dt_1^\prime e^{(\kappa \bar\Gamma+3D_r)t_1^\prime}+\int_0^{t^{\prime}}  dt_2^\prime e^{(\kappa \bar\Gamma+D_r)t_2^\prime}\int_{t_2^\prime}^{t^\prime} dt_1^\prime e^{(\kappa \bar\Gamma+3D_r)t_1^\prime}\Bigg]
+\\=v_p^2e^{-2\kappa \bar\Gamma t}\int_0^tdt^\prime
+e^{-4D_rt^\prime}\Bigg[ \frac{1}{(\kappa \bar \Gamma+3D_r)}\Bigg(\frac{(e^{(\kappa \bar \Gamma +D_r)t^\prime}-1)(e^{(\kappa \bar \Gamma +3D_r)t}+e^{(\kappa \bar \Gamma +3D_r)t^\prime})}{(\kappa \bar \Gamma +D_r)}-\frac{(e^{(2\kappa \bar \Gamma +4D_r)t^\prime}-1)}{(\kappa \bar \Gamma +2D_r)} \Bigg) \Bigg]
+\\=\frac{v_p^2e^{-2\kappa \bar\Gamma t}}{(\kappa \bar \Gamma+3D_r)(\kappa \bar \Gamma +D_r)}\Bigg[(e^{(\kappa \bar \Gamma +3D_r)t}\int_0^tdt^\prime \bigg(e^{(\kappa \bar \Gamma -3D_r)t^\prime}-e^{-4D_rt^\prime}\bigg)+\int_0^tdt^\prime\bigg(e^{2\kappa \bar \Gamma t^\prime}-e^{(\kappa \bar \Gamma -D_r)t^\prime}\bigg)\Bigg]
+\\-\frac{v_p^2e^{-2\kappa \bar\Gamma t}}{(\kappa \bar \Gamma+3D_r)(\kappa \bar \Gamma +2D_r)}\int_0^tdt^\prime \bigg(e^{2\kappa \bar \Gamma t^\prime}-e^{-4D_rt^\prime}\bigg)
+\\=\frac{v_p^2}{(\kappa \bar \Gamma+3D_r)(\kappa \bar \Gamma +D_r)}\Bigg[\frac{3(\kappa \bar \Gamma -D_r)}{(\kappa \bar \Gamma -3D_r)2\kappa \bar \Gamma}-\frac{e^{(-\kappa \bar \Gamma +3D_r)t}(\kappa \bar \Gamma +D_r)}{(\kappa \bar \Gamma -3D_r)4D_r}+\frac{e^{-(\kappa \bar \Gamma +D_r)t}(\kappa \bar \Gamma -5D_r)}{(\kappa \bar \Gamma -D_r)4D_r}+\frac{e^{-\kappa \bar \Gamma t}(\kappa \bar \Gamma +D_r)}{(\kappa \bar \Gamma -D_r)2\kappa \bar \Gamma}\Bigg]
+\\-\frac{v_p^2}{(\kappa \bar \Gamma+3D_r)(\kappa \bar \Gamma +2D_r)}\Bigg[\frac{1-e^{-2\kappa \bar \Gamma t}}{2\kappa \bar \Gamma}-\frac{e^{-2\kappa \bar \Gamma t}-e^{-2(\kappa \bar \Gamma +2D_r)t}}{4D_r}\Bigg]
+\\=\frac{v_p^2}{(\kappa \bar \Gamma+3D_r)}\Bigg[\frac{1}{(\kappa \bar \Gamma-3D_r)}\Bigg(\frac{3(\kappa \bar \Gamma -D_r)}{(\kappa \bar \Gamma +D_r)2\kappa \bar \Gamma}-\frac{e^{-(\kappa \bar \Gamma -3D_r)t}}{4D_r}\Bigg)+\frac{1}{2(\kappa \bar \Gamma-D_r)}\Bigg(\frac{e^{-(\kappa \bar \Gamma +D_r)t}(\kappa \bar \Gamma -5D_r)}{2D_r(\kappa \bar \Gamma +D_r)}\Bigg)
+\\-\frac{1}{(\kappa \bar \Gamma+2D_r)}\Bigg(\frac{1-e^{-2\kappa \bar \Gamma t}}{2\kappa \bar \Gamma}-\frac{e^{-2\kappa \bar \Gamma t}-e^{-2(\kappa \bar \Gamma+2D_r) t}}{4D_r} \Bigg) \Bigg]
+$$
+
+**The contribution to the mean square displacement along the $x$ direction is** 
+$$
+\langle x_{0}(t)x_{1}(t)\rangle_{\xi,\theta_0}=\frac{K_BT}{\kappa}\cos 2 \theta_0\Bigg(\frac{e^{-4D_r t}-e^{-2\kappa \bar \Gamma t}}{2\kappa \bar \Gamma-4D_r}-\frac{e^{-2\kappa \bar \Gamma t}-e^{-(2\kappa \bar \Gamma +4D_r)t}}{4D_r}\Bigg)\\+2\bigg(\frac{K_BT}{\kappa}\bigg)\bigg(\frac{\kappa \Delta \Gamma }{2}\bigg)\Bigg(\frac{1-e^{-2\kappa \bar \Gamma t}}{2\kappa \bar \Gamma(2\kappa \bar \Gamma+4D_r)}-\frac{e^{-2\kappa \bar \Gamma t}-e^{-(2\kappa \bar \Gamma +4D_r)t}}{4D_r(2\kappa \bar \Gamma+4D_r)}\Bigg)+\frac{v_p^2}{(\kappa \bar \Gamma+3D_r)}\Bigg[\frac{1}{(\kappa \bar \Gamma-3D_r)}\Bigg(\frac{3(\kappa \bar \Gamma -D_r)}{(\kappa \bar \Gamma +D_r)2\kappa \bar \Gamma}-\frac{e^{-(\kappa \bar \Gamma -3D_r)t}}{4D_r}\Bigg)\\+\frac{1}{2(\kappa \bar \Gamma-D_r)}\Bigg(\frac{e^{-(\kappa \bar \Gamma +D_r)t}(\kappa \bar \Gamma -5D_r)}{2D_r(\kappa \bar \Gamma +D_r)}\Bigg)
+-\frac{1}{(\kappa \bar \Gamma+2D_r)}\Bigg(\frac{1-e^{-2\kappa \bar \Gamma t}}{2\kappa \bar \Gamma}-\frac{e^{-2\kappa \bar \Gamma t}-e^{-2(\kappa \bar \Gamma+2D_r) t}}{4D_r} \Bigg) \Bigg]
+$$
+**and to the $y$ direction is**
+$$
+\langle y_{0}(t)y_{1}(t)\rangle_{\xi,\theta_0}=-\frac{K_BT}{\kappa}\cos 2 \theta_0\Bigg(\frac{e^{-4D_r t}-e^{-2\kappa \bar \Gamma t}}{2\kappa \bar \Gamma-4D_r}-\frac{e^{-2\kappa \bar \Gamma t}-e^{-(2\kappa \bar \Gamma +4D_r)t}}{4D_r}\Bigg)\\+2\bigg(\frac{K_BT}{\kappa}\bigg)\bigg(\frac{\kappa \Delta \Gamma }{2}\bigg)\Bigg(\frac{1-e^{-2\kappa \bar \Gamma t}}{2\kappa \bar \Gamma(2\kappa \bar \Gamma+4D_r)}-\frac{e^{-2\kappa \bar \Gamma t}-e^{-(2\kappa \bar \Gamma +4D_r)t}}{4D_r(2\kappa \bar \Gamma+4D_r)}\Bigg)+\frac{v_p^2}{(\kappa \bar \Gamma+3D_r)}\Bigg[\frac{1}{(\kappa \bar \Gamma-3D_r)}\Bigg(\frac{3(\kappa \bar \Gamma -D_r)}{(\kappa \bar \Gamma +D_r)2\kappa \bar \Gamma}-\frac{e^{-(\kappa \bar \Gamma -3D_r)t}}{4D_r}\Bigg)\\+\frac{1}{2(\kappa \bar \Gamma-D_r)}\Bigg(\frac{e^{-(\kappa \bar \Gamma +D_r)t}(\kappa \bar \Gamma -5D_r)}{2D_r(\kappa \bar \Gamma +D_r)}\Bigg)
+-\frac{1}{(\kappa \bar \Gamma+2D_r)}\Bigg(\frac{1-e^{-2\kappa \bar \Gamma t}}{2\kappa \bar \Gamma}-\frac{e^{-2\kappa \bar \Gamma t}-e^{-2(\kappa \bar \Gamma+2D_r) t}}{4D_r} \Bigg) \Bigg]
+$$
+
+6. **Calculation of $\langle R_{1,i}(t)R_{1,j}(t)\rangle_{\xi,\theta_0} $**
+
+$$
+\langle R_{1,i}(t)R_{1,j}(t)\rangle_{\xi,\theta_0}= \Bigg\langle\int_0^t dt^\prime  \int_0^t dt^{\prime\prime} e^{-\kappa \bar\Gamma(t-t^\prime)}e^{-\kappa \bar\Gamma(t-t^{\prime\prime})}\sum_k M_{ik}(t^\prime)\sum_l M_{jl}(t^{\prime\prime})\langle R_{0,k}(t^\prime)R_{0,l}(t^{\prime\prime})\rangle_{\xi}\Bigg\rangle_{\theta_0}
+\\=2K_BT \bar \Gamma e^{-2\kappa \bar\Gamma t}\int_0^t dt^\prime  \int_0^t dt^{\prime\prime} \int_0^{\min(t^\prime,t^{\prime\prime})} dt_1^{\prime} e^{-2\kappa \bar\Gamma t_1^{\prime}} \Bigg\langle\sum_k M_{ik}(t^\prime)M_{jk}(t^{\prime\prime})\Bigg\rangle_{\theta_0}\\+v_p^2e^{-2\kappa \bar\Gamma t}\int_0^tdt^\prime\int_0^{t}dt^{\prime\prime}e^{\kappa\bar\Gamma(t^\prime+t^{\prime\prime})}\int_0^{t^\prime}dt_1^\prime\int_0^{t^{\prime\prime}}dt_2^{\prime}\Bigg\langle\sum_{k,l} M_{ik}(t^\prime)M_{jl}(t^{\prime\prime})\hat n_k(t_1^\prime)\hat n_l(t_2^\prime))\Bigg\rangle_{\theta_0}
+$$
+
+For the MSD along $x$ and $y$ directions, i=j,
+$$
+\Bigg\langle\sum_{k,l} M_{ik}(t^\prime)M_{il}(t^{\prime\prime})\hat n_k(t_1^\prime)\hat n_l(t_2^\prime))\Bigg\rangle_{\theta_0}=e^{-4D_r(4t^\prime-4t^{\prime\prime}-3t_1^\prime-5t_2^\prime)}
+$$
+where we assume $t^\prime>t^{\prime\prime}>t_1^\prime>t_2^\prime$.
+$$
+\langle R_{1,i}(t)R_{1,j}(t)\rangle_{\xi,\theta_0}=2K_BT \bar \Gamma e^{-2\kappa \bar\Gamma t}\int_0^t dt^\prime  \int_0^t dt^{\prime\prime} \int_0^{\min(t^\prime,t^{\prime\prime})} dt_1^{\prime} e^{-2\kappa \bar\Gamma t_1^{\prime}} \Bigg\langle\sum_k M_{ik}(t^\prime)M_{jk}(t^{\prime\prime})\Bigg\rangle_{\theta_0}\\+v_p^2e^{-2\kappa \bar\Gamma t}\int_0^tdt^\prime\int_0^{t}dt^{\prime\prime}e^{\kappa\bar\Gamma(t^\prime+t^{\prime\prime})}\int_0^{t^\prime}dt_1^\prime\int_0^{t^{\prime\prime}}dt_2^{\prime}e^{-4D_r(4t^\prime-4t^{\prime\prime}-3t_1^\prime-5t_2^\prime)}
+$$
+Evaluation of the second term of the above equation:
+$$
+v_p^2e^{-2\kappa \bar\Gamma t}\int_0^tdt^\prime\int_0^{t}dt^{\prime\prime}e^{\kappa\bar\Gamma(t^\prime+t^{\prime\prime})}\int_0^{t^\prime}dt_1^\prime\int_0^{t^{\prime\prime}}dt_2^{\prime}e^{-4D_r(4t^\prime-4t^{\prime\prime}-t_1^\prime-t_2^\prime)}
+\\=v_p^2e^{-2\kappa \bar\Gamma t}\int_0^tdt^\prime\int_0^{t}dt^{\prime\prime}e^{\kappa\bar\Gamma(t^\prime+t^{\prime\prime})}e^{-4D_r(t^\prime-t^{\prime\prime})} \int_0^{t^\prime}dt_1^\prime\int_0^{t^{\prime\prime}}dt_2^{\prime}e^{D_r(t_1^\prime+t_2^\prime)}\\
+=\frac{v_p^2e^{-2\kappa \bar\Gamma t}}{D_r^2}\int_0^tdt^\prime\int_0^{t}dt^{\prime\prime}e^{((\kappa\bar\Gamma-4D_r)t^\prime+(\kappa\bar\Gamma+4D_r)t^{\prime\prime})}\Bigg[e^{D_rt^\prime}(e^{D_rt^{\prime\prime}-1})+e^{D_rt^{\prime\prime}}(e^{D_rt^{\prime\prime}-1})-\frac{(e^{2D_rt^{\prime\prime}-1})}{2}
+\Bigg]
+$$
