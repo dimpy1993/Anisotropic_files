@@ -1,5 +1,3 @@
-**PART-1**
-
 Asymmetric  [Ellipsoid]  active particle:
 
 ​     An asymmetric active particle undergoes self-propulsion with a velocity $v_p \bold {\hat n} (t)$ along its longer axis in 2-dimension. The angle between the x-axis of the lab frame and long axis of the ellipsoid at time $t$ is represented by $\theta(t)$. The component of the orientation vector $\bold{\hat n}(t)$ w.r.t the lab frame can be expressed as $\bold {\hat n}(t)\equiv \Big(\cos \theta(t),\sin \theta(t)\Big)$.
